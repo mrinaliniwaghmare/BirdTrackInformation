@@ -24,11 +24,10 @@ export class BirdTrackMapComponent implements OnInit {
   constructor(public getBirdTrackdataService: GetBirdTrackdataService) { }
   defaultBaseLayer;
   vectorSource;
-  vectorSource1;
   vectorLayer;
   trackLayer;
   iconLayer;
-  trackLayer1;
+  trackCoordinateLayer;
   ngOnInit() {
     this.getBirdTrackdataService.getDataForBirdTrackAndRadar().subscribe(data => {
       this.defaultBaseLayer = data;
@@ -44,7 +43,7 @@ export class BirdTrackMapComponent implements OnInit {
           }),
           this.vectorLayer,
           this.iconLayer,
-          this.trackLayer1,
+          this.trackCoordinateLayer,
           this.trackLayer
         ],
         target: 'map',
@@ -147,7 +146,7 @@ export class BirdTrackMapComponent implements OnInit {
       singleTrackFeature.setStyle(this.styleFunction);
       vectorSource.addFeature(singleTrackFeature);
     }
-    this.trackLayer1 = new VectorLayer({
+    this.trackCoordinateLayer = new VectorLayer({
       source: vectorSource
     });
   }
